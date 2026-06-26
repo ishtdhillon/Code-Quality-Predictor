@@ -92,6 +92,7 @@ pip install -r requirements.txt
 
 ### Train the Model
 python train_model.py
+
 This will generate:
 model.pkl
 
