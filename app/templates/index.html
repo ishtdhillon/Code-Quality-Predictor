@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI-Based Source Code Quality Prediction</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI-Based Source Code Quality Prediction</h1>
+
+    <p class="subtitle">
+        Enter the software metrics below to predict the quality of your source code using Machine Learning.
+    </p>
+
+    <div class="main-content">
+
+        <!-- LEFT SIDE -->
+
+        <div class="guide">
+
+            <h2>Code Metrics Guide</h2>
+
+            <div class="metric">
+                <h3>Lines of Code (LOC)</h3>
+                <p>Total number of lines in your code.</p>
+                <small>Example: 350</small>
+            </div>
+
+            <div class="metric">
+                <h3>Code Complexity</h3>
+                <p>How many different paths or decisions your code has.</p>
+                <small>Example: 12</small>
+            </div>
+
+            <div class="metric">
+                <h3>Number of Methods</h3>
+                <p>Total number of functions or methods.</p>
+                <small>Example: 18</small>
+            </div>
+
+            <div class="metric">
+                <h3>Number of Classes</h3>
+                <p>Total number of classes in your program.</p>
+                <small>Example: 4</small>
+            </div>
+
+            <div class="metric">
+                <h3>Coupling Between Objects (CBO)</h3>
+                <p>How many other classes this class depends on.</p>
+                <small>Example: 5</small>
+            </div>
+
+            <div class="metric">
+                <h3>Lack of Cohesion (LCOM)</h3>
+                <p>Shows how closely the methods work together.</p>
+                <small>Example: 28</small>
+            </div>
+
+            <div class="metric">
+                <h3>Inheritance Depth (DIT)</h3>
+                <p>How many parent levels this class has.</p>
+                <small>Example: 3</small>
+            </div>
+
+            <div class="metric">
+                <h3>Response for Class (RFC)</h3>
+                <p>Total methods that can run when this class is used.</p>
+                <small>Example: 60</small>
+            </div>
+
+            <div class="metric">
+                <h3>Number of Children (NOC)</h3>
+                <p>Number of child classes connected to this class.</p>
+                <small>Example: 2</small>
+            </div>
+
+            <div class="metric">
+                <h3>Weighted Methods (WMC)</h3>
+                <p>Overall complexity of all methods.</p>
+                <small>Example: 22</small>
+            </div>
+
+            <div class="metric">
+                <h3>Comment Ratio</h3>
+                <p>How much of your code is comments (0 to 1).</p>
+                <small>Example: 0.30 = 30% comments</small>
+            </div>
+
+            <div class="metric">
+                <h3>Maintainability Score (MI)</h3>
+                <p>Shows how easy the code is to maintain. Higher is better.</p>
+                <small>Example: 82</small>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+
+        <div class="form-section">
+
+            <form action="/predict" method="POST">
+
+                <div class="grid">
+
+                    <div class="field">
+                        <label>Lines of Code (LOC)</label>
+                        <input type="number" name="LOC" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Code Complexity</label>
+                        <input type="number" name="CyclomaticComplexity" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Number of Methods</label>
+                        <input type="number" name="Methods" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Number of Classes</label>
+                        <input type="number" name="Classes" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Coupling Between Objects (CBO)</label>
+                        <input type="number" name="CBO" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Lack of Cohesion (LCOM)</label>
+                        <input type="number" name="LCOM" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Inheritance Depth (DIT)</label>
+                        <input type="number" name="DIT" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Response for Class (RFC)</label>
+                        <input type="number" name="RFC" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Number of Children (NOC)</label>
+                        <input type="number" name="NOC" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Weighted Methods (WMC)</label>
+                        <input type="number" name="WMC" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Comment Ratio</label>
+                        <input type="number" step="0.01" name="CommentRatio" required>
+                    </div>
+
+                    <div class="field">
+                        <label>Maintainability Score (MI)</label>
+                        <input type="number" name="MaintainabilityIndex" required>
+                    </div>
+
+                </div>
+
+                <button type="submit">
+                    Predict Code Quality
+                </button>
+
+            </form>
+
+            {% if prediction %}
+
+            <div class="result">
+
+                <h2>Prediction Result</h2>
+
+                <p>{{ prediction }}</p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
